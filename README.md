@@ -1,8 +1,8 @@
-\# Reddit Coding Interview Research Agent
+# Reddit Coding Interview Research Agent
 
 
 
-This project is an example of an \*\*AI agent\*\* (not just an AI-powered script) that autonomously researches Reddit discussions related to software engineering coding interviews and extracts the most frequent \*\*problem patterns and named problems\*\* to help with interview preparation.
+This project is an example of an **AI agent** (not just an AI-powered script) that autonomously researches Reddit discussions related to software engineering coding interviews and extracts the most frequent \*\*problem patterns and named problems\*\* to help with interview preparation.
 
 
 
