@@ -14,19 +14,19 @@ The system combines deterministic data collection with LLM-based reasoning, usin
 
 
 
-\## What the Agent Does (End-to-End)
+## What the Agent Does (End-to-End)
 
 
 
-\### 1. Domain Definition and Seed Knowledge
+### 1. Domain Definition and Seed Knowledge
 
-The agent starts with a clearly defined \*\*research domain\*\* (default: `coding\_interviews`) and a small set of:
+The agent starts with a clearly defined **research domain** (default: `coding\_interviews`) and a small set of:
 
 
 
-\- Seed search queries (e.g., LeetCode, OA, DP, sliding window)
+- Seed search queries (e.g., LeetCode, OA, DP, sliding window)
 
-\- Seed subreddits (e.g., `leetcode`, `codinginterview`, `cscareerquestions`)
+- Seed subreddits (e.g., `leetcode`, `codinginterview`, `cscareerquestions`)
 
 
 
