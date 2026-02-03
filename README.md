@@ -2,11 +2,11 @@
 
 
 
-This project is an example of an **AI agent** (not just an AI-powered script) that autonomously researches Reddit discussions related to software engineering coding interviews and extracts the most frequent \*\*problem patterns and named problems\*\* to help with interview preparation.
+This project is an example of an **AI agent** (not just an AI-powered script) that autonomously researches Reddit discussions related to software engineering coding interviews and extracts the most frequent **problem patterns and named problems** to help with interview preparation.
 
 
 
-The system combines deterministic data collection with LLM-based reasoning, using a \*\*stateful, multi-step control loop\*\* implemented via LangGraph.
+The system combines deterministic data collection with LLM-based reasoning, using a **stateful, multi-step control loop** implemented via LangGraph.
 
 
 
@@ -38,21 +38,21 @@ These act as the agent’s initial prior. All subsequent decisions are guided by
 
 
 
-\### 2. Stateful Agent Workflow (LangGraph)
+### 2. Stateful Agent Workflow (LangGraph)
 
-The system is built using \*\*LangGraph\*\*, not a linear script.
-
-
-
-\- A shared `AgentState` object carries the plan, queries, subreddits, iteration count, raw posts, filtered posts, and final report.
-
-\- Each node reads from and writes to this state.
-
-\- Execution can branch or loop based on intermediate results.
+The system is built using **LangGraph**, not a linear script.
 
 
 
-This makes the workflow \*\*stateful, inspectable, and adaptive\*\*.
+- A shared `AgentState` object carries the plan, queries, subreddits, iteration count, raw posts, filtered posts, and final report.
+
+- Each node reads from and writes to this state.
+
+- Execution can branch or loop based on intermediate results.
+
+
+
+This makes the workflow **stateful, inspectable, and adaptive**.
 
 
 
@@ -60,7 +60,7 @@ This makes the workflow \*\*stateful, inspectable, and adaptive\*\*.
 
 
 
-\### 3. Planning Step (LLM-Guided)
+### 3. Planning Step (LLM-Guided)
 
 The agent first asks the LLM to generate a concise, explicit plan covering:
 
@@ -86,23 +86,23 @@ The plan is stored in state and later printed, making the reasoning process visi
 
 
 
-\### 4. Subreddit Discovery
+### 4. Subreddit Discovery
 
 Using Reddit’s public search API, the agent:
 
 
 
-\- Searches for subreddits relevant to its current query set
+- Searches for subreddits relevant to its current query set
 
-\- Merges discovered subreddits with seeds
+- Merges discovered subreddits with seeds
 
-\- Applies domain-specific exclusions to remove irrelevant large communities
+- Applies domain-specific exclusions to remove irrelevant large communities
 
-\- Caps total subreddits to control cost and runtime
+- Caps total subreddits to control cost and runtime
 
 
 
-This step allows \*\*adaptive source discovery\*\* rather than relying on a fixed list.
+This step allows **adaptive source discovery** rather than relying on a fixed list.
 
 
 
@@ -110,19 +110,19 @@ This step allows \*\*adaptive source discovery\*\* rather than relying on a fixe
 
 
 
-\### 5. Evidence Collection (Reddit Post Fetching)
+### 5. Evidence Collection (Reddit Post Fetching)
 
 For each selected subreddit, the agent:
 
 
 
-\- Fetches top posts over a specified time window
+- Fetches top posts over a specified time window
 
-\- Extracts structured metadata (title, score, comments, timestamps, URLs)
+- Extracts structured metadata (title, score, comments, timestamps, URLs)
 
-\- Deduplicates posts across subreddits
+- Deduplicates posts across subreddits
 
-\- Respects rate limits via intentional sleeps
+- Respects rate limits via intentional sleeps
 
 
 
@@ -134,17 +134,17 @@ At this stage, the agent is gathering raw evidence, not yet reasoning about it.
 
 
 
-\### 6. Domain-Specific Filtering
+### 6. Domain-Specific Filtering
 
 Posts are filtered using heuristics tailored to coding interview content:
 
 
 
-\- Minimum score and title-length thresholds
+- Minimum score and title-length thresholds
 
-\- Inclusion keywords (e.g., “DP”, “graph”, “OA”, “LeetCode”)
+- Inclusion keywords (e.g., “DP”, “graph”, “OA”, “LeetCode”)
 
-\- Exclusion keywords (e.g., compensation or career discussion)
+- Exclusion keywords (e.g., compensation or career discussion)
 
 
 
@@ -156,17 +156,17 @@ The result is a smaller, higher-signal dataset focused on interview problems rat
 
 
 
-\### 7. Self-Evaluation and Control Flow
+### 7. Self-Evaluation and Control Flow
 
-The agent evaluates whether it has gathered \*\*enough quality evidence\*\*:
+The agent evaluates whether it has gathered **enough quality evidence**:
 
 
 
-\- If the number of filtered posts meets a threshold, it proceeds
+- If the number of filtered posts meets a threshold, it proceeds
 
-\- Otherwise, it enters a refinement loop
+- Otherwise, it enters a refinement loop
 
-\- A maximum iteration limit ensures bounded execution
+- A maximum iteration limit ensures bounded execution
 
 
 
@@ -178,21 +178,21 @@ This decision point is a key agent characteristic: the workflow is not strictly 
 
 
 
-\### 8. Strategy Refinement (LLM-Guided)
+### 8. Strategy Refinement (LLM-Guided)
 
-When evidence is insufficient, the agent asks the LLM to propose \*\*additional search queries\*\*.
-
-
-
-\- New queries are merged into state
-
-\- Subreddit discovery and fetching run again
-
-\- Iteration count is incremented
+When evidence is insufficient, the agent asks the LLM to propose **additional search queries**.
 
 
 
-The agent is effectively \*\*improving its own research strategy within a single run\*\*, under explicit safety limits.
+- New queries are merged into state
+
+- Subreddit discovery and fetching run again
+
+- Iteration count is incremented
+
+
+
+The agent is effectively **improving its own research strategy within a single run**, under explicit safety limits.
 
 
 
@@ -200,21 +200,21 @@ The agent is effectively \*\*improving its own research strategy within a single
 
 
 
-\### 9. Clustering and Synthesis
+### 9. Clustering and Synthesis
 
 Once enough signal is collected, the agent:
 
 
 
-\- Sends post titles to the LLM
+- Sends post titles to the LLM
 
-\- Requests strict JSON output only
+- Requests strict JSON output only
 
-\- Produces:
+- Produces:
 
-&nbsp; - Problem \*patterns\* (e.g., sliding window, graphs, DP)
+&nbsp; - Problem *patterns* (e.g., sliding window, graphs, DP)
 
-&nbsp; - \*Named problems\* when explicitly mentioned
+&nbsp; - *Named problems* when explicitly mentioned
 
 &nbsp; - Estimated mention counts
 
@@ -230,21 +230,21 @@ The output is grounded in observed data, not free-form hallucination.
 
 
 
-\### 10. Final Report Artifact
+### 10. Final Report Artifact
 
 The agent prints and saves a structured report (`report.json`) containing:
 
 
 
-\- The original plan
+- The original plan
 
-\- Sources used
+- Sources used
 
-\- Identified patterns
+- Identified patterns
 
-\- Named problems
+- Named problems
 
-\- Supporting evidence
+- Supporting evidence
 
 
 
@@ -256,7 +256,7 @@ This makes the run reproducible and suitable for downstream analysis.
 
 
 
-\## Why This Is an AI Agent (Not Just a Script)
+## Why This Is an AI Agent (Not Just a Script)
 
 
 
@@ -264,19 +264,19 @@ This project goes beyond a typical “LLM-powered tool” in several key ways:
 
 
 
-\- \*\*Stateful execution\*\* across multiple steps
+- **Stateful execution** across multiple steps
 
-\- \*\*Explicit planning\*\* before acting
+- **Explicit planning** before acting
 
-\- \*\*Autonomous source discovery\*\*
+- **Autonomous source discovery**
 
-\- \*\*Feedback-driven iteration\*\*
+- **Feedback-driven iteration**
 
-\- \*\*Bounded self-improvement\*\*
+- **Bounded self-improvement**
 
-\- \*\*Evidence-grounded synthesis\*\*
+- **Evidence-grounded synthesis**
 
-\- \*\*Artifact-based output\*\*
+- **Artifact-based output**
 
 
 
@@ -288,31 +288,31 @@ The LLM is used for reasoning and strategy, while deterministic code handles dat
 
 
 
-\## Summary
+## Summary
 
 
 
-This agent demonstrates a full \*\*agent lifecycle\*\*:
+This agent demonstrates a full **agent lifecycle**:
 
 
 
-1\. Define a goal
+1. Define a goal
 
-2\. Plan an approach
+2. Plan an approach
 
-3\. Discover sources
+3. Discover sources
 
-4\. Gather evidence
+4. Gather evidence
 
-5\. Evaluate quality
+5. Evaluate quality
 
-6\. Adapt strategy
+6. Adapt strategy
 
-7\. Synthesize structured insights
+7. Synthesize structured insights
 
 
 
-It is designed as a practical, inspectable example of how to build AI agents that \*\*reason, act, and adapt\*\*, rather than simply responding to prompts.
+It is designed as a practical, inspectable example of how to build AI agents that **reason, act, and adapt**, rather than simply responding to prompts.
 
 
 
